@@ -1,42 +1,38 @@
-#coding=utf-8
+# coding=utf-8
 import requests
-import chardet
-
-defaul_header = {
-    # 'Connection': 'keep-alive',
-    # # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.91 Safari/537.36',
-    # 'Host': 'pead.scu.edu.cn',
-    # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    # 'Accept-Encoding': 'gzip, deflate',
-    # 'Accept-Language': 'zh-CN,zh;q=0.8',
-}
+from bs4 import BeautifulSoup
 
 login_url = 'http://pead.scu.edu.cn/jncx/logins.asp'
 host = 'http://pead.scu.edu.cn/jncx/'
-
-account = '2016141462307'
-password = '462307'
-
-user_info = {
-    'xh': account,
-    'xm': password,
-    'Submit': '',
-}
-
-css_url = 'http://pead.scu.edu.cn/jncx/Css/wangye9pt.css'
 mid_url = 'http://pead.scu.edu.cn/jncx/?security_verify_data=313932302c31303830'
 
-s = requests.session()
-s.headers.update(defaul_header)
-# 访问主页
-s.get(host)
-# 跳转
-s.get(mid_url)
 
-#登录
-s.post(login_url, user_info)
-data = s.get('http://pead.scu.edu.cn/jncx/tcsh2.asp').content.decode('gb2312').encode('utf-8')
-with open('test1.html', 'w') as f:
-    f.write(data)
-print data
+def get_test_datas(account, password):
+    user_info = {
+        'xh': account,
+        'xm': password,
+        'Submit': '',
+    }
+    s = requests.session()  # 访问主页
+    s.get(host)
+    # 跳转
+    s.get(mid_url)
 
+    # 登录
+    s.post(login_url, user_info)
+    # 获取数据
+    soup = BeautifulSoup(s.get('http://pead.scu.edu.cn/jncx/tcsh2.asp').text, 'lxml')
+    trs = soup.find_all('tr')[5:]
+    # datas = [[第一次], [第二次], [第三次] ...]
+    datas = []
+    temp = []
+    for tr in trs:
+        temp.append(map(lambda x: x.text.strip().encode('utf-8') if x.text else '/', tr.find_all('div', attrs={'align': "center"})))
+        if len(temp) == 2:
+            datas.append(temp)
+            temp = []
+    return datas
+
+
+if __name__ == '__main__':
+    print get_test_datas('2016141462267', '462267')
