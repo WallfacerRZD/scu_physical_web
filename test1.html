@@ -1,0 +1,368 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="Css/wangye9pt.css" rel="stylesheet" type="text/css">
+<title></title>
+<style type="text/css" media="all">
+.d1{width:300px;height:450;overflow:hidden;border:#666666 2px solid;background-color:#000000;position:relative;}
+.loading{width:300px;border:#666666 2px solid;background-color:#000000;color:#FFCC00;font-size:12px;height:179px;text-align:center;padding-top:30px;font-family:Verdana, Arial, Helvetica, sans-serif;font-weight:bold;}
+.d2{width:100%;height:450px;overflow:hidden;}
+.num_list{position:absolute;width:100%;left:0px;bottom:-1px;background-color:#000000;color:#FFFFFF;font-size:12px;padding:4px 0px;height:20px;overflow:hidden;}
+.num_list span{display:inline-block;height:16px;padding-left:6px;}
+img{border:0px;}
+ul{display:none;}
+.button{position:absolute; z-index:1000; right:0px; bottom:2px; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;}
+.b1,.b2{background-color:#666666;display:block;float:left;padding:2px 6px;margin-right:3px;color:#FFFFFF;text-decoration:none;cursor:pointer;}
+.b2{color:#FFCC33;background-color:#FF6633;}
+</style>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url();
+}
+.style1 {color: #003399}
+-->
+</style>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+<script>
+function turnoff(obj){
+document.getElementById(obj).style.display="none";
+}
+</script>
+<script language="javascript" type="text/javascript">
+/*
+power by: http://www.wxwdesign.cn
+*/
+//主函数
+var s=function(){
+var interv=2000; //切换间隔时间
+var interv2=15; //切换速速
+var opac1=80; //文字背景的透明度
+var source="fade_focus" //焦点轮换图片容器的id名称
+//获取对象
+function getTag(tag,obj){if(obj==null){return document.getElementsByTagName(tag)}else{return obj.getElementsByTagName(tag)}}
+function getid(id){return document.getElementById(id)};
+var opac=0,j=0,t=63,num,scton=0,timer,timer2,timer3;var id=getid(source);id.removeChild(getTag("div",id)[0]);var li=getTag("li",id);var div=document.createElement("div");var title=document.createElement("div");var span=document.createElement("span");var button=document.createElement("div");button.className="button";for(var i=0;i<li.length;i++){var a=document.createElement("a");a.innerHTML=i+1;a.onclick=function(){clearTimeout(timer);clearTimeout(timer2);clearTimeout(timer3);j=parseInt(this.innerHTML)-1;scton=0;t=63;opac=0;fadeon();};a.className="b1";a.onmouseover=function(){this.className="b2"};a.onmouseout=function(){this.className="b1";sc(j)};button.appendChild(a);}
+//控制图层透明度
+function alpha(obj,n){if(document.all){obj.style.filter="alpha(opacity="+n+")";}else{obj.style.opacity=(n/100);}}
+//控制焦点按钮
+function sc(n){for(var i=0;i<li.length;i++){button.childNodes[i].className="b1"};button.childNodes[n].className="b2";}
+title.className="num_list";title.appendChild(span);alpha(title,opac1);id.className="d1";div.className="d2";id.appendChild(div);id.appendChild(title);id.appendChild(button);
+//渐显
+var fadeon=function(){opac+=5;div.innerHTML=li[j].innerHTML;span.innerHTML=getTag("img",li[j])[0].alt;alpha(div,opac);if(scton==0){sc(j);num=-2;scrolltxt();scton=1};if(opac<100){timer=setTimeout(fadeon,interv2)}else{timer2=setTimeout(fadeout,interv);};}
+//渐隐
+var fadeout=function(){opac-=5;div.innerHTML=li[j].innerHTML;alpha(div,opac);if(scton==0){num=2;scrolltxt();scton=1};if(opac>0){timer=setTimeout(fadeout,interv2)}else{if(j<li.length-1){j++}else{j=0};fadeon()};}
+//滚动文字
+var scrolltxt=function(){t+=num;span.style.marginTop=t+"px";if(num<0 && t>3){timer3=setTimeout(scrolltxt,interv2)}else if(num>0 && t<62){timer3=setTimeout(scrolltxt,interv2)}else{scton=0}};
+fadeon();
+}
+//初始化
+window.onload=s;
+</script>
+</head>
+<body>
+<table>
+<tr><td >
+<table border="0" title="公告">
+  <tr>
+    <td><table border="0" align="center" cellpadding="0" cellspacing="0" >
+     
+  <tr>
+    <td align="left" valign="top" class="TrBody">
+	
+      <div align="left"> 
+	  
+	   <table border="0" bgcolor="#CCCCCC"  class="w9pt">
+        <tr bgcolor="#FFFFFF">
+          <td><div align="center" class="w9pt">序号</div></td>
+          <td><div align="center" class="w9pt">时间</div></td>
+          <td><div align="center" class="w9pt">发布人</div></td>
+          <td><div align="center" class="w9pt">公告内容</div></td>
+		  <td><div align="center" class="w9pt"></div></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>1</td>
+          <td>2016-3-22</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=58" target="_self">体质测试须知（置顶必读！！！）</a></td>
+		  <td>132770</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>2</td>
+          <td>2017-9-18</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=70" target="_self">四川大学2017-2018学年(秋季） 学生体质测试工作的通知</a></td>
+		  <td>11871</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>3</td>
+          <td>2017-9-18</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=69" target="_self">关于2013级毕业生返校补测相关事宜通知</a></td>
+		  <td>1320</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>4</td>
+          <td>2017-5-3</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=68" target="_self">20171学期补测通知</a></td>
+		  <td>10345</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>5</td>
+          <td>2017-4-7</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=67" target="_self">201702学期查询无数据及网站崩溃处理办法</a></td>
+		  <td>11280</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>6</td>
+          <td>2017-3-27</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=66" target="_self">关于体质测试数据出现问题时，处理时间的通知：</a></td>
+		  <td>10073</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>7</td>
+          <td>2017-3-13</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=65" target="_self">20171学期体质健康测试通知</a></td>
+		  <td>43641</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>8</td>
+          <td>2016-11-1</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=64" target="_self">20162学期补测通知</a></td>
+		  <td>9509</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>9</td>
+          <td>2016-9-23</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=63" target="_self">20162学期学生体质健康测试志愿者招募及加分政策</a></td>
+		  <td>13137</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>10</td>
+          <td>2016-9-22</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=62" target="_self">20162学期学生体质健康测试通知</a></td>
+		  <td>22129</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>11</td>
+          <td>2016-6-3</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=61" target="_self">四川大学2016年本科毕业生体质测试补测免测数据通知</a></td>
+		  <td>12716</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>12</td>
+          <td>2016-5-8</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=60" target="_self">四川大学2016年本科毕业生体质测试免测数据补录通知</a></td>
+		  <td>13674</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>13</td>
+          <td>2016-5-8</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=59" target="_self">室外项目补测通知</a></td>
+		  <td>6541</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>14</td>
+          <td>2016-3-21</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=57" target="_self">关于体质测试的规范要求</a></td>
+		  <td>21683</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>15</td>
+          <td>2016-3-9</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=56" target="_self">20161学期体质测试申请免测通知</a></td>
+		  <td>19602</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>16</td>
+          <td>2016-3-5</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=55" target="_self">20161学期体质健康测试通知</a></td>
+		  <td>42995</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>17</td>
+          <td>2016-3-2</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=54" target="_self">20161学生体质测试工作人员</a></td>
+		  <td>6710</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>18</td>
+          <td>2016-3-2</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=53" target="_self">20161学生体质测试工作人员</a></td>
+		  <td>4423</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>19</td>
+          <td>2015-12-10</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=52" target="_self">成绩通知</a></td>
+		  <td>18634</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>20</td>
+          <td>2015-12-7</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=51" target="_self">体测通知</a></td>
+		  <td>14530</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>21</td>
+          <td>2015-12-6</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=50" target="_self">2015年安测试点补测安排顺延一天的通知</a></td>
+		  <td>4719</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>22</td>
+          <td>2015-11-25</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=49" target="_self">关于2015年江安测试点补测安排的通知</a></td>
+		  <td>4339</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>23</td>
+          <td>2015-10-21</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=48" target="_self">关于延长体质测试时间通知</a></td>
+		  <td>11533</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>24</td>
+          <td>2015-10-10</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=47" target="_self">关于男生引体向上的通知</a></td>
+		  <td>15598</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>25</td>
+          <td>2015-9-24</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=46" target="_self">20152学期体质健康测试通知</a></td>
+		  <td>22673</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>26</td>
+          <td>2015-9-24</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=45" target="_self">20152学期学生体质测试工作人员</a></td>
+		  <td>4301</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>27</td>
+          <td>2015-5-31</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=44" target="_self">四川大学2015年毕业生补测通知</a></td>
+		  <td>12810</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>28</td>
+          <td>2015-4-29</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=43" target="_self">2015年度江安游泳池招救生员的通知</a></td>
+		  <td>3975</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>29</td>
+          <td>2015-4-29</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=42" target="_self">2015年度江安游泳池招救生员的通知</a></td>
+		  <td>2546</a></td>
+        </tr>
+		
+        <tr bgcolor="#FFFFFF">
+          <td>30</td>
+          <td>2015-4-15</td>
+          <td>admin     </td>
+          <td><a href="main2.asp?cha=41" target="_self">20151学期望江校区体侧地点更改通知</a></td>
+		  <td>8859</a></td>
+        </tr>
+ 		
+      </table> 
+     
+      </div>
+    <p>&nbsp;</p></td>
+  </tr>
+</table></td>
+  </tr>
+</table>
+</td>
+<td align="center" valign="top" >
+<!--
+<div id="fade_focus">
+    <div class="loading">Loading...<br /><img src="/ymtt/1.jpg" width="100" height="100" /></div>
+    <ul>
+      <li><img src="ymtt/1.jpg" width="300" height="450" alt="体测图片1" /></li>
+      <li><img src="ymtt/2.jpg" width="300" height="450" alt="体测图片2" /></li>
+      <li><img src="ymtt/3.jpg" width="300" height="450" alt="体测图片3" /></li>
+      <li><img src="ymtt/4.jpg" width="300" height="450" alt="体测图片4" /></li>
+	  <li><img src="ymtt/5.jpg" width="300" height="450" alt="体测图片4" /></li>
+    </ul>
+</div>
+-->
+</td>
+</tr>
+</table>
+
+<br>
+
+
+</body>
+</html>
