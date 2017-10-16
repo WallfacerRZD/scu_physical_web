@@ -30,16 +30,13 @@ s = requests.session()
 s.headers.update(defaul_header)
 # 访问主页
 s.get(host)
-# 第一次跳转
+# 跳转
 s.get(mid_url)
 
-#第二次跳转
-response = s.post(login_url, user_info)
-content = response.content.decode('gb2312').encode('utf-8')
-# content = s.get('http://pead.scu.edu.cn/jncx/main.asp').content.decode('gb2312').encode('utf-8')
-# print chardet.detect(content)
-# with open('test1.html', 'w') as f:
-#     f.write(content)
-print content
-print s.cookies
+#登录
+s.post(login_url, user_info)
+data = s.get('http://pead.scu.edu.cn/jncx/tcsh2.asp').content.decode('gb2312').encode('utf-8')
+with open('test1.html', 'w') as f:
+    f.write(data)
+print data
 
