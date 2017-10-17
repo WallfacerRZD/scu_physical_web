@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,34 @@
 </head>
 
 <body>
-    <table border="1">
-        {% for i in datas.keys() %}
-        <tr>{{ datas[i] }}</tr>
-        {% endfor %}
+    <table border="2">
+        <tbody align="center" valign="middle">
+            <tr>
+                <td>身高</td>
+                <td>体重</td>
+                <td>肺活量</td>
+                <td>跳远</td>
+                <td>50米</td>
+                <td>台阶</td>
+                <td>800米</td>
+                <td>1000米</td>
+                <td>仰卧起坐</td>
+                <td>引体向上</td>
+                <td>坐位体前屈</td>
+                <td>握力</td>
+                <td>视力左</td>
+                <td>视力右</td>
+                <td>学期</td>
+                <td>总评</td>
+                <td>需要改进</td>
+            </tr>
+            <tr>
+                {% for data in datas -%}
+                <td>{{ data }}</td>
+                {%- endfor %}
+            </tr>
+        </tbody>
     </table>
 </body>
+
 </html>
