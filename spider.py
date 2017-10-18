@@ -90,7 +90,7 @@ def get_datas(session):
 
 
 if __name__ == '__main__':
-    s = login_scu('2016141462310', '462310')
+    s = login_scu('2016141462307', '462307')
     if s:
         for i in get_datas(s):
             print i.name

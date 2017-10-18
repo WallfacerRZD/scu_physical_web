@@ -12,6 +12,9 @@ class DataBase(object):
         self.db = MySQLdb.connect('localhost', self.user, self.pass_word, self.db_name, charset='utf8')
         self.cursor = self.db.cursor()
 
+    def __del__(self):
+        self.close()
+        
     def insert_users(self, account, password, name):
         sql = u"""INSERT INTO USERS(account, password, name)
                             VALUES('%s', '%s', '%s')""" \
@@ -27,7 +30,7 @@ class DataBase(object):
 
 
     def insert_datas(self, account, datas, term, assessment, suggestion):
-        sql = u"""INSERT INTO SCORES
+        sql = u"""INSERT INTO TEST_DATAS
                   (account, 身高, 体重, 肺活量, 跳远, 50米, 台阶, 
                    800米, 1000米, 仰卧起坐, 引体向上, 坐位体前屈, 
                    握力, 视力左, 视力右, 学期, 总评, 需要改进)
@@ -43,10 +46,38 @@ class DataBase(object):
         except Exception, e:
             print str(e)
             self.db.rollback()
-        # finally:
-        #     self.close()
+
+    def insert_scores(self, account, scores, term):
+        sql = u"""INSERT INTO SCORES
+                  (account, 身体素质, 肺活量, 跳远, 50米, 台阶, 
+                   800米, 1000米, 仰卧起坐, 引体向上, 坐位体前屈, 
+                   握力, 视力左, 视力右, 学期)
+              VALUES("%s", "%s", "%s", "%s", "%s", "%s", 
+                     "%s", "%s", "%s", "%s", "%s", "%s", 
+                     "%s", "%s", "%s")""" \
+              % (account, scores[0], scores[1], scores[2], scores[3], scores[4],
+                 scores[5], scores[6], scores[7], scores[8], scores[9], scores[10],
+                 scores[11], scores[12], term)
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
+
 
     def query_datas(self, account):
+        sql = "SELECT * FROM TEST_DATAS WHERE ACCOUNT=%s" % account
+        self.cursor.execute(sql)
+        rs = self.cursor.fetchall()
+        # rs = ((身高, 体重, 肺活量, 跳远, 50米, 台阶,
+        #        800米, 1000米, 仰卧起坐, 引体向上, 坐位体前屈,
+        #        握力, 视力左, 视力右, 学期, 总评, 需要改进),
+        # (),
+        # .....)
+        return rs
+
+    def query_scores(self, account):
         sql = "SELECT * FROM SCORES WHERE ACCOUNT=%s" % account
         self.cursor.execute(sql)
         rs = self.cursor.fetchall()

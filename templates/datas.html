@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,36 +10,33 @@
 </head>
 
 <body>
-    <table border="2">
-        <tbody align="center" valign="middle">
-            <tr>
-                <td>身高</td>
-                <td>体重</td>
-                <td>肺活量</td>
-                <td>跳远</td>
-                <td>50米</td>
-                <td>台阶</td>
-                <td>800米</td>
-                <td>1000米</td>
-                <td>仰卧起坐</td>
-                <td>引体向上</td>
-                <td>坐位体前屈</td>
-                <td>握力</td>
-                <td>视力左</td>
-                <td>视力右</td>
-                <td>学期</td>
-                <td>总评</td>
-                <td>需要改进</td>
-            </tr>
-            {% for data in datas -%}
-                <tr>
-               {% for i in data -%}
-                <td>{{ i }}</td>
-                {%- endfor %}
-                </tr>
-            {%- endfor %}
-        </tbody>
-    </table>
+    {% for data in datas -%}
+        {% set test_datas = data[0] %}
+        {% set scores = data[1] %}
+        <table align="center" border="2">
+            <tbody align="center" valign="middle">
+                <caption align="center">学期:{{ test_datas[15] }}</caption>
+                <tr><td>项目</td><td>数据</td><td>得分</td></tr>
+                <tr><td>身高</td><td>{{ test_datas[1] }}</td><td rowspan="2">{{ scores[1]}}</td></tr>
+                <tr><td>体重</td><td>{{ test_datas[2] }}</tr>
+                <tr><td>肺活量</td><td>{{ test_datas[3] }}</td><td>{{ scores[2]}}</td></tr>
+                <tr><td>跳远</td><td>{{ test_datas[4] }}</td><td>{{ scores[3]}}</td></tr>
+                <tr><td>50米</td><td>{{ test_datas[5] }}</td><td>{{ scores[4]}}</td></tr>
+                <tr><td>台阶</td><td>{{ test_datas[6] }}</td><td>{{ scores[5]}}</td></tr>
+                <tr><td>800米</td><td>{{ test_datas[7] }}</td><td>{{ scores[6]}}</td></tr>
+                <tr><td>1000米</td><td>{{ test_datas[8] }}</td><td>{{ scores[7]}}</td></tr>
+                <tr><td>仰卧起坐</td><td>{{ test_datas[9] }}</td><td>{{ scores[8]}}</td></tr>
+                <tr><td>引体向上</td><td>{{ test_datas[10] }}</td><td>{{ scores[9]}}</td></tr>
+                <tr><td>坐位体前屈</td><td>{{ test_datas[11] }}</td><td>{{ scores[10]}}</td></tr>
+                <tr><td>握力</td><td>{{ test_datas[12] }}</td><td>{{ scores[11]}}</td></tr>
+                <tr><td>视力左</td><td>{{ test_datas[13] }}</td><td>{{ scores[12]}}</td></tr>
+                <tr><td>视力右</td><td>{{ test_datas[14] }}</td><td>{{ scores[13]}}</td></tr>
+                <tr><td>总评</td><td colspan="2">{{ test_datas[16] }}</td></tr>
+                <tr><td>需要改进</td><td colspan="2">{{ test_datas[17] }}</td></tr>
+
+             </tbody>
+        </table>
+    {%- endfor %}
 </body>
 
 </html>
