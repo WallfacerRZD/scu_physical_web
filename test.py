@@ -40,15 +40,20 @@ def login():
     # 本地数据库无记录, 登录体育学院网站
     else:
         # 登录学院网站成功, 写入用户数据到本地数据库
-        s = login_scu(account, password)
-        if s:
-            datas = get_datas(s)
-            name = datas[0].name
-            db.insert_users(account, password, name)
-            session['account'] = account
-            session['password'] = password
-            session['name'] = name
-            return redirect(url_for('index'))
+        try:
+            s = login_scu(account, password)
+            if s:
+                test_datas = get_datas(s)
+                name = test_datas[0].name
+                db.insert_users(account, password, name)
+                for test_data in test_datas:
+                    db.insert_datas(account, test_data.datas, test_data.term, test_data.assessment, test_data.suggestion)
+                session['account'] = account
+                session['password'] = password
+                session['name'] = name
+                return redirect(url_for('index'))
+        except Exception, e:
+            return '<p>出错啦!,%s</p>' % str(e)
             # db.insert_datas(datas)
         # 登录学院网站失败, 提示账号或密码错误
         else:
@@ -71,9 +76,15 @@ def logout():
 def query():
     if has_login():
         # 从本地数据库获取体侧数据
-        db = DataBase()
-        rs = db.query_datas(session['account'])
-        return render_template('datas.html', datas=rs[0][1:])
+        try:
+            db = DataBase()
+            rs = db.query_datas(session['account'])
+            rs = map(lambda x: x[1:], rs) if rs else []
+            return render_template('datas.html', datas=rs)
+
+        except Exception, e:
+            return '<p>出错啦!,%s</p>' % str(e)
+
     else:
         return '<p>请登录!!</p>'
 

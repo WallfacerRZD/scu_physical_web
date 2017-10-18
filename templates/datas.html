@@ -30,11 +30,13 @@
                 <td>总评</td>
                 <td>需要改进</td>
             </tr>
-            <tr>
-                {% for data in datas -%}
-                <td>{{ data }}</td>
+            {% for data in datas -%}
+                <tr>
+               {% for i in data -%}
+                <td>{{ i }}</td>
                 {%- endfor %}
-            </tr>
+                </tr>
+            {%- endfor %}
         </tbody>
     </table>
 </body>

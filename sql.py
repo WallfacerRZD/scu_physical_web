@@ -26,7 +26,7 @@ class DataBase(object):
         #     self.close()
 
 
-    def insert_datas(self, account, datas):
+    def insert_datas(self, account, datas, term, assessment, suggestion):
         sql = u"""INSERT INTO SCORES
                   (account, 身高, 体重, 肺活量, 跳远, 50米, 台阶, 
                    800米, 1000米, 仰卧起坐, 引体向上, 坐位体前屈, 
@@ -36,11 +36,12 @@ class DataBase(object):
                      "%s", "%s", "%s", "%s", "%s", "%s")""" \
               % (account, datas[0], datas[1], datas[2], datas[3], datas[4],
                  datas[5], datas[6], datas[7], datas[8], datas[9], datas[10],
-                 datas[11], datas[12], datas[13], '20171', u'合格', u'引体向上')
+                 datas[11], datas[12], datas[13], term, assessment, suggestion)
         try:
             self.cursor.execute(sql)
             self.db.commit()
         except Exception, e:
+            print str(e)
             self.db.rollback()
         # finally:
         #     self.close()

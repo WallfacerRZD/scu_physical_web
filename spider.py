@@ -98,3 +98,4 @@ if __name__ == '__main__':
             print i.scores
             print i.assessment
             print i.suggestion
+            print i.term
