@@ -84,7 +84,12 @@ def compose_data(test_datas, scores):
     return datas
 
 
+
+
 @app.route('/query', methods=['GET'])
+
+
+
 def query():
     if has_login():
         # 从本地数据库获取体侧数据
