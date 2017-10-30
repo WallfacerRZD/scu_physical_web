@@ -19,7 +19,7 @@ class Data(object):
         self.term = []
         self.assessment = []
         self.suggestion = []
-
+    
 
 def has_logined(page):
     return wrong_pattern.search(page) == None
@@ -90,7 +90,7 @@ def get_datas(session):
 
 
 if __name__ == '__main__':
-    s = login_scu('2016141462307', '462307')
+    s = login_scu('2016141462310', '462310')
     if s:
         for i in get_datas(s):
             print i.name

@@ -1,12 +1,13 @@
 # coding=utf-8
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 from flask import Flask, render_template, send_file, redirect, url_for, session
 from flask import request
 from spider import *
-from scu_physical_web.sql import DataBase
+from sql import DataBase
 from chardet import detect
 
 app = Flask(__name__)
@@ -47,7 +48,8 @@ def login():
                 name = test_datas[0].name
                 db.insert_users(account, password, name)
                 for test_data in test_datas:
-                    db.insert_datas(account, test_data.datas, test_data.term, test_data.assessment, test_data.suggestion)
+                    db.insert_datas(account, test_data.datas, test_data.term, test_data.assessment,
+                                    test_data.suggestion)
                     db.insert_scores(account, test_data.scores, test_data.term)
                 session['account'] = account
                 session['password'] = password
@@ -84,12 +86,7 @@ def compose_data(test_datas, scores):
     return datas
 
 
-
-
 @app.route('/query', methods=['GET'])
-
-
-
 def query():
     if has_login():
         # 从本地数据库获取体侧数据
