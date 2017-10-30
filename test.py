@@ -94,14 +94,22 @@ def query():
         try:
             test_datas = db.query_datas(session['account'])
             scores = db.query_scores(session['account'])
+            # 同一次数据和成绩组合在一起
             datas = compose_data(test_datas, scores)
             return render_template('datas.html', datas=datas)
-
+            # return "<p>test</p>"
         except Exception, e:
             return '<p>出错啦!,%s</p>' % str(e)
 
     else:
         return '<p>请登录!!</p>'
+
+
+@app.route('/reserve', methods=['GET', 'POST'])
+def reserve():
+    if has_login():
+        pass
+
 
 
 if __name__ == '__main__':

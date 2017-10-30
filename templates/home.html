@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <title>Title</title>
+    <script>
+        <!--POST = function(){-->
+            <!--$.get('/query', success=function(data, status, x){-->
+                    <!--table = $(data)-->
+                    <!--$("#display").html(table)-->
+            <!--})-->
+        <!--}-->
+        POST = function(){
+            $("#display").load('/query .data_table')
+        }
+
+    </script>
 </head>
 <body>
-    <p align="center">hello, {{ name }}</p>
-    </br>
-    <a href="/logout">登出</a></br>
-    <a href="">体侧预约</a></br>
-    <a href="">预约查询</a></br>
-    <a href="/query">测试数据查询</a></br>
-    <a href="">实时数据查询</a></br>
-    <a href="">申请免测</a></br>
+<p align="center">hello, {{ name }}</p>
+</br>
+<a href="/logout">登出</a></br>
+<a href="">体侧预约</a></br>
+<a href="">预约查询</a></br>
+<a href="javascript:void(0)" onclick="POST()">测试数据查询</a></br>
+<a href="">实时数据查询</a></br>
+<a href="">申请免测</a></br>
+
+<div id="display"></div>
 
 </body>
 </html>

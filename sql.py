@@ -2,6 +2,7 @@
 
 import MySQLdb
 import MySQLdb.cursors
+from datetime import datetime
 
 
 class DataBase(object):
@@ -14,20 +15,19 @@ class DataBase(object):
 
     def __del__(self):
         self.close()
-        
+
     def insert_users(self, account, password, name):
         sql = u"""INSERT INTO USERS(account, password, name)
                             VALUES('%s', '%s', '%s')""" \
-                             % (account, password, name)
+              % (account, password, name)
         try:
             self.cursor.execute(sql)
             self.db.commit()
         except Exception, e:
             print e
             self.db.rollback()
-        # finally:
-        #     self.close()
-
+            # finally:
+            #     self.close()
 
     def insert_datas(self, account, datas, term, assessment, suggestion):
         sql = u"""INSERT INTO TEST_DATAS
@@ -64,7 +64,27 @@ class DataBase(object):
         except Exception, e:
             print str(e)
             self.db.rollback()
+            print self.db
 
+    def insert_cancels(self, account, reason):
+        sql = '''INSERT INTO cancels (id, reason)
+                VALUES("%s", "%s")''' % (account, reason)
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
+
+    def insert_revervation(self, account, date, place):
+        sql = """INSERT INTO reservations (id, date, place)
+                 VALUES("%s", "%s", "%s")""" % (account, date, place)
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
 
     def query_datas(self, account):
         sql = "SELECT * FROM TEST_DATAS WHERE ACCOUNT=%s" % account
@@ -94,10 +114,24 @@ class DataBase(object):
         rs = self.cursor.fetchone()
         return rs
 
+    # ((日期, 地点, 容量, 学生人数), )
+    def query_tests(self):
+        sql = 'SELECT * FROM TESTS'
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        return result
+
+    # ((学号, 日期, 地点), )
+    def query_reservations(self, account):
+        sql = 'SELECT dateTime, place FROM RESERVATIONS WHERE ID="%s"' % account
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        return result
+
     def close(self):
         self.db.close()
 
 
 if __name__ == '__main__':
     database = DataBase()
-    database.insert_users('201614146207', '462307', u'冉哲东')
+    result = database.query_tests()[0]
