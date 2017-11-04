@@ -19,7 +19,7 @@ class Data(object):
         self.term = []
         self.assessment = []
         self.suggestion = []
-    
+
 
 def has_logined(page):
     return wrong_pattern.search(page) == None
@@ -45,10 +45,12 @@ def login_scu(account, password):
     else:
         return None
 
+
 def deal_string(string):
     if not string:
         return u'无'.encode('utf-8')
     return string.strip().encode('utf-8')
+
 
 def get_datas(session):
     if session != None:

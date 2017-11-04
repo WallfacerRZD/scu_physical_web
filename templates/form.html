@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>-------------------table1体侧数据表---------------------------</p>
+<div id="table1">
+    <table class="data_table" align="center" border="2">
+        <tbody align="center" valign="middle">
+        </tbody>
+        <caption align="center">学期:20162</caption>
+        <tbody>
+        <tr>
+            <td>项目</td>
+            <td>数据</td>
+            <td>得分</td>
+        </tr>
+        <tr>
+            <td>身高</td>
+            <td>172</td>
+            <td rowspan="2">100</td>
+        </tr>
+        <tr>
+            <td>体重</td>
+            <td>68.8</td>
+        </tr>
+        <tr>
+            <td>肺活量</td>
+            <td>3944</td>
+            <td>74</td>
+        </tr>
+        <tr>
+            <td>跳远</td>
+            <td>2.29</td>
+            <td>70</td>
+        </tr>
+        <tr>
+            <td>50米</td>
+            <td>7.8</td>
+            <td>72</td>
+        </tr>
+        <tr>
+            <td>台阶</td>
+            <td>无</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>800米</td>
+            <td>无</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>1000米</td>
+            <td>229</td>
+            <td>76</td>
+        </tr>
+        <tr>
+            <td>仰卧起坐</td>
+            <td>无</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>引体向上</td>
+            <td>2</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>坐位体前屈</td>
+            <td>6</td>
+            <td>62</td>
+        </tr>
+        <tr>
+            <td>握力</td>
+            <td>无</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>视力左</td>
+            <td>无</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>视力右</td>
+            <td>无</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>总评</td>
+            <td colspan="2">68分，及格</td>
+        </tr>
+        <tr>
+            <td>需要改进</td>
+            <td colspan="2">引体向上|</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>-------------------table2我的预约信息---------------------------</p>
+<div id="table2">
+    <table id="myorder" border="1">
+        <thead>
+        <tr>
+            <th>时间</th>
+            <th>地点</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2016-8-11</td>
+            <td>江安体育场</td>
+        </tr>
+        </tbody>
+    </table>
+    <form class="free" action="/cancle_reservation" method="post">
+        <button class="submission" type="submit">取消预约</button>
+    </form>
+</div>
+
+<p>-------------------table3预约信息---------------------------</p>
+<div id="table3">
+    <form id="tests-info" action="/do_reserve" method="post">
+        <table id="order" border="1">
+            <thead>
+            <tr>
+                <th>时间</th>
+                <th>地点</th>
+                <th>可预约人数</th>
+                <th>已预约人数</th>
+                <th>预约</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2016-8-11</td>
+                <td>江安体育场</td>
+                <td>50</td>
+                <td>2</td>
+                <td><input type="radio" value="2" name="id"></td>
+            </tr>
+            <tr>
+                <td>2016-8-11</td>
+                <td>望江体育场</td>
+                <td>50</td>
+                <td>2</td>
+                <td><input type="radio" value="2" name="id"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="free"><button type="submit" class="submission">确定</button></div>
+    </form>
+</div>
+
+</body>
+</html>
+<style>
+
+.data_table
+{
+	margin-left:10%;
+	background-color:rgba(234,237,213,0.83);
+	text-align:center;
+}
+.data_table td
+{
+	min-width:80px;
+	max-width:100px;
+	width:20%;
+}
+
+#myorder
+{
+	background-color:rgba(234,237,213,0.83);
+	margin-left:10%;
+	text-align:center;
+}
+#myorder th
+{
+	min-width:100px;
+	max-width:150px;
+	width:20%;
+}
+
+.submission
+{
+	margin-top:20px;
+	margin-left:350px;
+	height:30px;
+	width:70px;
+}
+.free
+{
+	margin-left:10%;
+	font-size:20px;
+}
+
+#order
+{
+	margin-left:10%;
+	background-color:rgba(234,237,213,0.83);
+}
+
+#order td
+{
+	min-width:100px;
+	max-width:150px;
+	width:20%;
+	text-align:center;
+}

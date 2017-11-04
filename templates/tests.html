@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+    <form id="tests-info" action="/do_reserve" method="post">
+    <table id="order" border="1">
+    <thead>
+    <tr>
+        <th>时间</th>
+        <th>地点</th>
+        <th>可预约人数</th>
+        <th>已预约人数</th>
+        <th>预约</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in datas -%}
+    <tr>
+        <td>{{ data[1] }}</td>
+        <td>{{ data[2] }}</td>
+        <td>{{ data[3] }}</td>
+        <td>{{ data[4] }}</td>
+        <td><input type="radio" value="{{ data[0] }}" name="id"></td>
+    </tr>
+    {%- endfor%}
+    </tbody>
+    </table>
+        <button type="submit">确定</button>
+    </form>
+    </div>
+</body>
+</html>

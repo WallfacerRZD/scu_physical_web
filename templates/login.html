@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>四川大学体测系统</title>
+</head>
+<body>
+<div id="box"></div>
+<div class="title">
+    <img class="mainpic" src="../static/scu1.png" width="84" height="84" alt="">
+    <h1><p class="maintitle">四川大学体测系统</p></h1>
+</div>
+<form id="loginform" name="form1" action="/login" method="post">
+    <div><strong>用户名：</strong><input type="text" name="account" class="in"><br></div>
+    <div><strong>密码：</strong><input type="password" name="password" class="in"><br></div>
+    <input type="submit" value="登录" align="absmiddle" onclick="login()">
+</form>
+</div>
+
+</body>
+</html>
+<style>
+    body {
+        height: 100%;
+        background-image: url(../static/background.png);
+        background-repeat: repeat-x, repeat-y;
+        background-origin: padding-box;
+    }
+
+    .title {
+    }
+
+    #description {
+        margin-left: 0;
+        margin-right: 0;
+        width: 200px;
+    }
+
+    .mainpic {
+        margin-bottom: -74px;
+        margin-top: -10px;
+        width: 84px;
+        height: 84px;
+
+    }
+
+    h1 {
+        background-color: #DBBBBB;
+        font-family: "华文细黑";
+        height: 84px;
+        width: 100%;
+        font-size: 36px;
+        margin-left: -10px;
+        margin-top: -10px;
+        margin-right: -20%;
+    }
+
+    .maintitle {
+        margin-left: 100px;
+        margin-top: 0px;
+        margin-bottom: -2px;
+        padding-top: 15px;
+    }
+
+    #loginform {
+        margin: auto;
+        width: 200px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: rgba(255, 253, 253, 0.74)
+    }
+
+    .in {
+        width: 180px;
+        margin-bottom: 20px;
+        display: inline;
+        background-color: #FFFFC3;
+        font-family: Verdana, Arial;
+    }
+
+    input[type="submit"] {
+        width: 80px;
+        height: 30px;
+        color: #000000;
+        margin-left: 60px;
+    }
+
+</style>
+
+<script>
+    function login() {
+        var username = document.form1.account.value;
+        var password = document.form1.password.value;
+        if (username == "") {
+            alert("请填写用户名！");
+            window.location.reload(false);
+            return false;
+        }
+        if (password == "") {
+            alert("请填写密码！");
+            window.location.reload(false);
+        }
+
+    }
+</script>

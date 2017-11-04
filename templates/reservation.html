@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="reservation">
+    <table id="reservation-info" border="1">
+        <tbody>
+        <tr>
+            <th> 时间</th>
+            <th>地点</th>
+        </tr>
+        <tr>
+            <td>{{ data[0] }}</td>
+            <td>{{ data[1] }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <form class="submission" action="/cancle_reservation" method="post">
+        <button type="submit">取消预约</button>
+    </form>
+</div>
+</body>
+</html>

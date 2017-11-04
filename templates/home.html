@@ -1,35 +1,301 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <title>Title</title>
     <script>
-        <!--POST = function(){-->
-            <!--$.get('/query', success=function(data, status, x){-->
-                    <!--table = $(data)-->
-                    <!--$("#display").html(table)-->
-            <!--})-->
-        <!--}-->
-        POST = function(){
-            $("#display").load('/query .data_table')
+        function test1() {
+            $("#display").load('/tests #tests-info');
         }
 
+        function cancelorder() {
+            window.location.reload(true);
+        }
+
+        function test2() {
+            $("#display").load('/reserve #reservation');
+        }
+
+        function test3() {
+            $("#display").load('/query .data_table');
+        }
+
+        function test4() {
+            var display = document.getElementById("display");
+            display.innerHTML =
+                '<form action="/cancle" method="post">'+
+                '<div class="free">' +
+                '<p style="background-color:rgba(255,255,255,0.77);width: 15%;margin-left: 20%;">' +
+                '<strong>申请原因:</strong></p>' +
+                '<textarea id="reason" name="reason"></textarea></div>' +
+                '<div class="free">' +
+                '<input id="submitreason" type="submit" value="提交"></div>'+
+                '</form>';
+        }
+
+
+
+
     </script>
+    <meta charset="utf-8">
+    <title>四川大学体测系统</title>
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 </head>
+
 <body>
-<p align="center">hello, {{ name }}</p>
-</br>
-<a href="/logout">登出</a></br>
-<a href="">体侧预约</a></br>
-<a href="">预约查询</a></br>
-<a href="javascript:void(0)" onclick="POST()">测试数据查询</a></br>
-<a href="">实时数据查询</a></br>
-<a href="">申请免测</a></br>
+<img class="mainpic" src="../static/scu1.png" width="84" height="84" alt="scu">
+<h1><p class="maintitle">四川大学体测系统</p></h1>
+<h2 style="margin-left: 85%">你好,{{ name }}</h2>
+<h2 style="margin-left: 87%"><a href="/logout">[登出]</a></h2>
+<nav id="nav">
+    <a class="chao" href="javascript:void(0)" target="_self" onclick="test1()">
+        <div class="functionnav">
+            <img src="../static/add (1).png" width="83" height="77" alt=""/>
+            <div class="navtext"><h3 class="littletitle"><strong>体测预约</strong></h3><br>
+                点击进入预约界面
+            </div>
+        </div>
+    </a>
+    <a class="chao" href="javascript:void(0)" target="_self" onclick="test2()">
+        <div class="functionnav">
+            <img src="../static/photos.png" width="83" height="77" alt=""/>
+            <div class="navtext"><h3 class="littletitle">预约查询</h3><br>点击查询预约情况</div>
+        </div>
+    </a>
+    <a class="chao" href="javascript:void(0)" target="_self" onclick="test3()">
+        <div class="functionnav">
+            <img src="../static/racing-flag.png" width="83" height="77" alt=""/>
+            <div class="navtext"><h3 class="littletitle">测试数据查询</h3><br>点击查询测试数据</div>
+        </div>
+    </a>
+    <a class="chao" href="javascript:void(0)" target="_self" onclick="test4()">
+        <div class="functionnav">
+            <img src="../static/racing-flag.png" width="83" height="77" alt=""/>
+            <div class="navtext" onclick="data()"><h3 class="littletitle">申请免测</h3><br>点击提交免测原因</div>
+        </div>
+    </a>
+    <div class="clear"></div>
+
+</nav>
 
 <div id="display"></div>
-
 </body>
 </html>
+<style>
+
+    button{
+        height: 40px;
+        width: 70px;
+        margin-top: 20px;
+    }
+    #display {
+        height: 40%;
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 2%;
+    }
+
+    body {
+        height: 100%;
+        width: 100%;
+        background-image: url(../static/background.png);
+        background-repeat: repeat-y;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .mainpic {
+        margin-bottom: -74px;
+        margin-top: -10px;
+        width: 84px;
+        height: 84px;
+
+    }
+
+    h1 {
+        background-color: #DBBBBB;
+        font-family: "华文细黑";
+        height: 84px;
+        width: 100%;
+        font-size: 36px;
+        margin-left: -10px;
+        margin-top: -10px;
+        margin-right: -20%;
+    }
+
+    .maintitle {
+        margin-left: 100px;
+        margin-top: 0px;
+        margin-bottom: -2px;
+        padding-top: 15px;
+    }
+
+    #cancel {
+        margin-left: 250px;
+        height: 30px;
+        width: 70px;
+    }
+
+    .cancel1 {
+        margin-left: 10%;
+        width: 200px;
+        margin-top: 30px;
+        background-color: rgba(121, 67, 197, 1.00);
+    }
+
+    .none {
+        font-size: 25px;
+        margin-left: 50px;
+        width: 200px;
+        background-color: rgba(255, 255, 255, 0.77);
+    }
+
+    .navtitle {
+        display: inline-block;
+        font-family: "华文细黑";
+        font-size: 25px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: rgba(255, 255, 255, 0.82);
+    }
+
+    #nav {
+        margin: 0 auto;
+        display: block;
+        width: 80%
+
+    }
+
+    .navtitle:visited {
+    }
+
+    .navtitle:link {
+        font-style: normal;
+    }
+
+    .navtitle:hover {
+        background-color: rgba(177, 171, 171, 0.86);
+    }
+
+    .chao {
+        color: rgba(0, 0, 0, 1.00);
+    }
+
+    .none {
+        font-size: 25px;
+        margin-left: 10%;
+        width: 200px;
+        background-color: rgba(255, 255, 255, 0.77);
+    }
+
+    .free {
+        margin-left: 10%;
+        font-size: 20px;
+    }
+
+    #reason {
+        width: 30%;
+        min-width: 400px;
+        height: 200px;
+        font-size: 16px;
+    }
+
+    #submitreason {
+        margin-top: 20px;
+        margin-left: 350px;
+        height: 30px;
+        width: 70px;
+    }
+
+    .functionnav {
+        width: 270px;
+        float: left;
+        margin-bottom: 10px;
+        height: 100px;
+        margin-top: 20px;
+        margin-left: 3%;
+        background-color: rgba(255, 255, 255, 0.78);
+        padding-top: 10px;
+        padding-left: 10px
+    }
+
+    .navtext {
+
+        margin-left: 100px;
+        margin-top: -65px;
+        height: 80px;
+
+    }
+
+    .functionnav:visited {
+    }
+
+    .functionnav:link {
+    }
+
+    .functionnav:hover {
+        text-decoration: underline;
+        transform: scale(1.1, 1.1);
+        -ms-transform: scale(1.1, 1, 1); /* IE 9 */
+        -webkit-transform: scale(1.1, 1.1); /* Safari 和 Chrome */
+        -o-transform: scale(1.1, 1.1); /* Opera */
+        -moz-transform: scale(1.1, 1.1); /* Firefox */
+    }
+
+    .littletitle {
+        height: 0.5px;
+        padding-bottom: 0px;
+        padding-height: 0px;
+        margin-bottom: -2px;
+        margin-top: -2px;
+    }
+
+    .data_table {
+        background-color: rgba(234, 237, 213, 0.83);
+        text-align: center;
+    }
+
+    .data_table td {
+        min-width: 80px;
+        max-width: 100px;
+        width: 20%;
+    }
+
+    #reservation-info {
+        background-color: rgba(234, 237, 213, 0.83);
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #reservation-info th {
+        min-width: 100px;
+        max-width: 150px;
+        width: 20%;
+    }
+
+    .submission {
+        margin: auto;
+        height: 30px;
+        width: 70px;
+        text-align: center;
+    }
+
+    #order {
+        margin-left: 10%;
+        background-color: rgba(234, 237, 213, 0.83);
+    }
+
+    #order td {
+        min-width: 100px;
+        max-width: 150px;
+        width: 20%;
+        text-align: center;
+    }
+
+
+
+
+</style>

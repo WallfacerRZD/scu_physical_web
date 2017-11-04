@@ -76,9 +76,36 @@ class DataBase(object):
             print str(e)
             self.db.rollback()
 
-    def insert_revervation(self, account, date, place):
-        sql = """INSERT INTO reservations (id, date, place)
-                 VALUES("%s", "%s", "%s")""" % (account, date, place)
+    def insert_reservation(self, account, date, place, test_id):
+        sql = """INSERT INTO reservations (id, date, place, test_id)
+                 VALUES("%s", "%s", "%s", "%s")""" % (account, date, place, test_id)
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
+
+    def delete_reservation(self, account):
+        sql = """delete from reservations where id='%s'""" % account
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
+
+    def increase_tests_capacity(self, _id):
+        sql = """UPDATE tests SET capacity = capacity + 1, stdNum = stdNum - 1 WHERE id=%s""" % _id
+        try:
+            self.cursor.execute(sql)
+            self.db.commit()
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
+
+    def decrease_tests_capacity(self, _id):
+        sql = """UPDATE tests SET capacity = capacity - 1, stdNum = stdNum + 1 WHERE id=%s""" % _id
         try:
             self.cursor.execute(sql)
             self.db.commit()
@@ -108,6 +135,7 @@ class DataBase(object):
         # .....)
         return rs
 
+    #
     def query_user(self, account, password):
         sql = 'SELECT * FROM users where account="%s" and password="%s"' % (account, password)
         self.cursor.execute(sql)
@@ -116,22 +144,48 @@ class DataBase(object):
 
     # ((日期, 地点, 容量, 学生人数), )
     def query_tests(self):
-        sql = 'SELECT * FROM TESTS'
+        sql = 'SELECT * FROM TESTS WHERE capacity > stdNum'
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
         return result
 
-    # ((学号, 日期, 地点), )
-    def query_reservations(self, account):
-        sql = 'SELECT dateTime, place FROM RESERVATIONS WHERE ID="%s"' % account
+    def query_tests_by_id(self, _id):
+        sql = "SELECT * FROM TESTS WHERE id='%s'" % _id
         self.cursor.execute(sql)
-        result = self.cursor.fetchall()
+        result = self.cursor.fetchone()
+        return result
+
+    # (日期, 地点)
+    def query_reservations(self, account):
+        sql = 'SELECT date, place FROM RESERVATIONS WHERE ID="%s"' % account
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        result = result if result else ('无', '无')
+        return result
+
+    def query_cancel(self, account):
+        sql = 'SELECT * FROM cancels WHERE id="%s"' % account
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        return result
+
+    def get_tests_id(self, account):
+        sql = """SELECT test_id FROM reservations WHERE id=%s""" % account
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()[0]
         return result
 
     def close(self):
         self.db.close()
 
+    def query_has_reserved(self, account):
+        sql = """SELECT * FROM reservations WHERE id=%s""" % account
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        return result
+
 
 if __name__ == '__main__':
     database = DataBase()
-    result = database.query_tests()[0]
+    result = database.get_tests_id('2016141462230')
+    print result
